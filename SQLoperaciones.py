@@ -130,7 +130,7 @@ def consulta():
     estado=True
     while(estado):
         mycursor=mydb.cursor()
-        consul = int(input('¿Qué gráfica desea ver?\n1.Ciudades\n2.Sexo de los pacientes\n3.Cantidad de personas con ciertos síntomas\n4.Temperatura corporal\n5.Ritmo Cardiáco\n6.Humedad Habitación\n7.Temperatura Habitación\n8.Enviar correo a paciente\n'))
+        consul = int(input('¿Qué gráfica desea ver?\n1.Ciudades\n2.Sexo de los pacientes\n3.Cantidad de personas con ciertos síntomas\n4.Temperatura corporal\n5.Ritmo Cardiáco\n6.Humedad Habitación\n7.Temperatura Habitación\n8.Enviar correo a paciente\n9.Registrarse en la base de datos\n'))
         if (consul==1):
             mycursor.execute("SELECT DISTINCT ciudad,COUNT(ciudad) FROM `paciente` GROUP BY ciudad")
             titulo="Ciudades"
@@ -205,7 +205,8 @@ def consulta():
                 enviarCorreo(correoPaciente)
             except:
                 print("Error: Usuario no registrado o correo inválido.")
-                
+        elif(consul==9):
+            agregarPersona()
         else:
             print('Ingrese una opción válida')
             consulta()
